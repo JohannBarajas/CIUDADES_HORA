@@ -11,11 +11,39 @@
       padding: 20px;
     }
 
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #ddd; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+    a { color: blue; text-decoration: underline; cursor: pointer; }
+
+    .section-title {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .account-table {
+      margin-top: 10px;
+      width: 50%;
+      border-collapse: collapse;
+    }
+
+    .account-table th, .account-table td {
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+    }
+
+    .account-table th {
+      background-color: #eee;
+      text-align: left;
+    }
+
     .clock-container {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-bottom: 30px;
+      margin-top: 40px;
       background-color: #1e1e2f;
       padding: 20px;
       border-radius: 8px;
@@ -52,42 +80,20 @@
       font-weight: bold;
       text-align: right;
     }
-  </style>
-</head>
-<body>
 
-  <div class="clock-container" id="city-clocks">
-    <!-- Relojes se generan por JS -->
-  </div>
-  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Tabla de Usuarios</title>
-  <style>
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #ddd; }
-    tr:nth-child(even) { background-color: #f9f9f9; }
-    a { color: blue; text-decoration: underline; cursor: pointer; }
-    .section-title {
-      margin-top: 20px;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-    .account-table {
-      margin-top: 10px;
-      width: 50%;
-      border-collapse: collapse;
-    }
-    .account-table th, .account-table td {
-      border: 1px solid #ccc;
-      padding: 6px 8px;
-    }
-    .account-table th {
-      background-color: #eee;
-      text-align: left;
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 10px 0;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #555;
+      text-align: center;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
     }
   </style>
   <script>
@@ -101,14 +107,16 @@
       navigator.clipboard.writeText(texto);
     }
   </script>
-  <div class="section-title">PICK UP LOCATIONS DOCUMENT</div>
-<p>
-  <a href="PU_SPOTS.pdf" target="_blank">
-    PICK UP LOCATIONS - pickup_locations.pdf
-  </a>
-</p>
 </head>
 <body>
+
+  <div class="section-title">PICK UP LOCATIONS DOCUMENT</div>
+  <p>
+    <a href="PU_SPOTS.pdf" target="_blank">
+      PICK UP LOCATIONS - pickup_locations.pdf
+    </a>
+  </p>
+
   <h2>Tabla de Ciudades API</h2>
   <table>
     <tr>
@@ -126,8 +134,12 @@
     <tr><td><a onclick="copiarYRedirigir('Desertcoach1234')">CMH ups</a></td><td>Desertcoach1234</td><td><a onclick="copiarTexto('Desertcoach1!')">Desertcoach1!</a></td></tr>
     <tr><td><a onclick="copiarYRedirigir('DesertCoachASA')">Fort Lauderdale</a></td><td>DesertCoachASA</td><td><a onclick="copiarTexto('Desertcoach12345Y!')">Desertcoach12345Y!</a></td></tr>
     <tr><td><a onclick="copiarYRedirigir('johnb')">Jacksonville</a></td><td>johnb</td><td><a onclick="copiarTexto('Desertcoach11!')">Desertcoach11!</a></td></tr>
-    <tr><td><a onclick="copiarYRedirigir('deldaye123')">New York Frontier (EWR) </a></td><td>deldaye123</td><td><a onclick="copiarTexto('Desertcoach11!')">Desertcoach11!</a></td></tr>
+    <tr><td><a onclick="copiarYRedirigir('deldaye123')">New York Frontier (EWR)</a></td><td>deldaye123</td><td><a onclick="copiarTexto('Desertcoach11!')">Desertcoach11!</a></td></tr>
   </table>
+
+ <div class="clock-container" id="city-clocks">
+    <!-- Se llenará por JS -->
+  </div>
 
   <h2>CONTRASEÑAS</h2>
 
@@ -140,90 +152,41 @@
   <div class="section-title">CORREO</div>
   <table class="account-table">
     <tr><th>Correo</th><th>Contraseña</th></tr>
-    <tr><td>
-        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" onclick="copiarTexto('faxes@desertcoach.com')">faxes@desertcoach.com</a>
-      </td>
-      <td>
-        <a onclick="copiarTexto('DesertCoach1!')" style="cursor:pointer; color:blue; text-decoration:underline;">DesertCoach1!</a>
-      </td>
-    </tr>
-    <td>
-        <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" onclick="copiarTexto('changeorders@desertcoach.com')">changeorders@desertcoach.com</a>
-      </td>
-      <td>
-        <a onclick="copiarTexto('Desertcoach1!')" style="cursor:pointer; color:blue; text-decoration:underline;">Desertcoach1!</a>
-      </td>
-
+    <tr><td><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" onclick="copiarTexto('faxes@desertcoach.com')">faxes@desertcoach.com</a></td>
+        <td><a onclick="copiarTexto('DesertCoach1!')">DesertCoach1!</a></td></tr>
+    <tr><td><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank" onclick="copiarTexto('changeorders@desertcoach.com')">changeorders@desertcoach.com</a></td>
+        <td><a onclick="copiarTexto('Desertcoach1!')">Desertcoach1!</a></td></tr>
   </table>
 
   <div class="section-title">CAMARAS</div>
   <table class="account-table">
     <tr><th>Correo</th><th>Contraseña</th></tr>
-    <tr>
-        <td>
-          <a href="https://login.lytx.com/" target="_blank" onclick="copiarTexto('andrew@desertcoach.com')">andrew@desertcoach.com</a>
-        </td>
-        <td>
-          <a onclick="copiarTexto('De614630!')" style="cursor:pointer; color:blue; text-decoration:underline;">De614630!</a>
-        </td>
-      </tr>
-      
+    <tr><td><a href="https://login.lytx.com/" target="_blank" onclick="copiarTexto('andrew@desertcoach.com')">andrew@desertcoach.com</a></td>
+        <td><a onclick="copiarTexto('De614630!')">De614630!</a></td></tr>
   </table>
-  
 
   <div class="section-title">TA CONECTION</div>
   <table class="account-table">
     <tr><th>Usuario</th><th>Contraseña</th></tr>
-    <tr>
-        <td>
-          <a href="https://aapartnerconnex.tvlinc.com/Account/Login?ReturnUrl=%2fTrips" target="_blank" onclick="copiarTexto('Aeldaye')">Aeldaye</a>
-        </td>
-        <td>
-          <a onclick="copiarTexto('Desertcoach1!')" style="cursor:pointer; color:blue; text-decoration:underline;">Desertcoach1!</a>
-        </td>
-      </tr> 
+    <tr><td><a href="https://aapartnerconnex.tvlinc.com/Account/Login?ReturnUrl=%2fTrips" target="_blank" onclick="copiarTexto('Aeldaye')">Aeldaye</a></td>
+        <td><a onclick="copiarTexto('Desertcoach1!')">Desertcoach1!</a></td></tr>
   </table>
 
   <div class="section-title">PayCheck</div>
   <table class="account-table">
     <tr><th>Client ID</th><th>Login ID</th><th>Password</th></tr>
-    <tr>
-        <td>
-          <a href="https://paychex.centralservers.com/Login.aspx" target="_blank" onclick="copiarTexto('20021216')">20021216</a>
-        </td>
-        <td>
-          <a onclick="copiarTexto('DFlorida')" style="cursor:pointer; color:blue; text-decoration:underline;">DFlorida</a>
-          <td>
-            <a onclick="copiarTexto('DesertCoach!')" style="cursor:pointer; color:blue; text-decoration:underline;">DesertCoach!</a>
-          </td>
-        </td>
-      </tr> 
+    <tr><td><a href="https://paychex.centralservers.com/Login.aspx" target="_blank" onclick="copiarTexto('20021216')">20021216</a></td>
+        <td><a onclick="copiarTexto('DFlorida')">DFlorida</a></td>
+        <td><a onclick="copiarTexto('DesertCoach!')">DesertCoach!</a></td></tr>
   </table>
-  <p>Primer párrafo.</p>
-  <p>Segundo párrafo.</p>
 
-  <footer style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f0f0f0;
-  padding: 10px 0;
-  font-size: 1.1em;
-  font-weight: 600;
-  color: #555;
-  text-align: center;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-  z-index: 1000;
-">
-  <p>By Johan Barajas    | <a href="mailto:johannbarajas@gmail.com" style="color: #555; text-decoration: underline;">johannbarajas@gmail.com</a></p>
-</footer>
+  <!-- MUESTRA DE HORARIOS EN CIUDADES - AL FINAL -->
 
-  
-  
-</body>
-</html>
 
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    <p>By Johan Barajas | <a href="mailto:johannbarajas@gmail.com">johannbarajas@gmail.com</a></p>
+  </footer>
 
   <script>
     const cities = [
@@ -234,7 +197,7 @@
       { name: "New York", location: "New York, USA", timeZone: "America/New_York" },
       { name: "Boston", location: "Massachusetts, USA", timeZone: "America/New_York" },
       { name: "Columbus", location: "Ohio, USA", timeZone: "America/New_York" },
-      { name: "Jacksonville / Fort Lauderdale ", location: "Florida, USA", timeZone: "America/New_York" }
+      { name: "Jacksonville / Fort Lauderdale", location: "Florida, USA", timeZone: "America/New_York" }
     ];
 
     function getTimeInZone(timeZone) {
@@ -258,10 +221,7 @@
 
         const cityInfo = document.createElement("div");
         cityInfo.className = "city-info";
-        cityInfo.innerHTML = `
-          <div class="city-name">${city.name}</div>
-          <div class="timezone">${city.location}</div>
-        `;
+        cityInfo.innerHTML = `<div class="city-name">${city.name}</div><div class="timezone">${city.location}</div>`;
 
         const timeDisplay = document.createElement("div");
         timeDisplay.className = "time-display";
@@ -283,7 +243,6 @@
       });
     }
 
-    // Inicializar
     renderClocks();
     setInterval(updateClocks, 1000);
   </script>
