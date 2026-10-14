@@ -134,6 +134,7 @@
       font-size: 1.15em;
       font-weight: bold;
       text-align: left;
+      color: #f4c95d;
     }
 
     footer {
@@ -340,8 +341,8 @@
         timeDisplay.textContent = getTimeInZone(city.timeZone);
         timeDisplay.id = `clock-${city.name.replace(/\s+/g, '-')}`;
 
-        box.appendChild(timeDisplay);
         box.appendChild(cityInfo);
+        box.appendChild(timeDisplay);
         container.appendChild(box);
       });
     }
