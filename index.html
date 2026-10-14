@@ -92,10 +92,10 @@
     .clock-container {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 6px;
       margin-top: 40px;
       background-color: #1e1e2f;
-      padding: 20px;
+      padding: 12px 16px;
       border-radius: 8px;
       color: white;
     }
@@ -103,16 +103,19 @@
     .clock-box {
       background-color: #2c2c3e;
       border-radius: 6px;
-      padding: 12px 16px;
+      padding: 8px 12px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
+      gap: 12px;
       box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
 
     .city-info {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 4px 8px;
     }
 
     .city-name {
@@ -126,9 +129,10 @@
     }
 
     .time-display {
-      font-size: 1.5em;
+      flex: 0 0 78px;
+      font-size: 1.15em;
       font-weight: bold;
-      text-align: right;
+      text-align: left;
     }
 
     footer {
@@ -161,10 +165,9 @@
 <body>
 
   <div class="section-title">
-    <a href="PU_SPOTS.pdf" target="_blank" rel="noopener">PICK UP LOCATIONS DOCUMENT - OPEN PDF</a>
+    <a href="PU_SPOTS.pdf" target="_blank" rel="noopener">OPEN PDF</a>
+    <span> - PICK UP LOCATIONS DOCUMENT</span>
   </div>
-
-  <div class="clock-container" id="top-clock" style="margin-top: 10px; margin-bottom: 20px;"></div>
 
   <h2>CIUDADES Y HORAS</h2>
   <div class="clock-container" id="city-clocks"></div>
@@ -319,27 +322,6 @@
       }).format(now);
     }
 
-    function renderTopClock() {
-      const topClock = document.getElementById("top-clock");
-      if (!topClock) return;
-      topClock.innerHTML = `
-        <div class="clock-box" style="background-color:#2a2a3d; min-height: 70px;">
-          <div class="city-info">
-            <div class="city-name">Current time</div>
-            <div class="timezone">Local system time</div>
-          </div>
-          <div class="time-display" id="top-clock-value">${new Date().toLocaleTimeString('en-US', { hour12: false })}</div>
-        </div>
-      `;
-    }
-
-    function updateTopClock() {
-      const el = document.getElementById("top-clock-value");
-      if (el) {
-        el.textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
-      }
-    }
-
     function renderClocks() {
       const container = document.getElementById("city-clocks");
       container.innerHTML = "";
@@ -357,8 +339,8 @@
         timeDisplay.textContent = getTimeInZone(city.timeZone);
         timeDisplay.id = `clock-${city.name.replace(/\s+/g, '-')}`;
 
-        box.appendChild(cityInfo);
         box.appendChild(timeDisplay);
+        box.appendChild(cityInfo);
         container.appendChild(box);
       });
     }
@@ -370,10 +352,8 @@
           el.textContent = getTimeInZone(city.timeZone);
         }
       });
-      updateTopClock();
     }
 
-    renderTopClock();
     renderClocks();
     setInterval(updateClocks, 1000);
   </script>
